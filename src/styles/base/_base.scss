@@ -1,0 +1,17 @@
+// rem - instead of pixels 1 rem = 16 px
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background: whitee;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: $m_size;
+}
+
+button {
+    cursor:pointer;
+}
+button:disabled {
+    cursor:default;
+}
