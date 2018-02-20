@@ -1,6 +1,6 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import  {removeExpense} from '../actions/expenses';
+import {Link} from 'react-router-dom';
+import moment from 'moment'
 
 const ExpenseListItem = (props) => {
     const {id, description, amount, note, createdAt, index} = props;
@@ -9,15 +9,11 @@ const ExpenseListItem = (props) => {
     return(
         <div>
             {isTextPrintable(description) &&
-                <h3>{description}</h3>}
+                <Link to={`/edit/${id}`}><h3>{description}</h3></Link>}
             {isAmountPrintable(amount) && <p>Amount: ${(amount/100).toFixed(2)}</p>}
             {isTextPrintable(note) && <p>Notes: {note}</p>}
             {isDatePrintable(createdAt) && 
-                <p>Created at: {createdAt}</p>}
-
-            <button onClick={() => {
-                props.dispatch(removeExpense({id}))
-            }}>Remove</button>
+                <p>Created at: {moment(createdAt).format('dddd, MMMM Do, YYYY')}</p>}
         </div>
             
         );
@@ -42,4 +38,4 @@ const isAmountPrintable = (amount) => {
         amount !== 0;
 }
 
-export default connect()(ExpenseListItem);
+export default ExpenseListItem;

@@ -12,11 +12,8 @@ import getVisibleExpenses from './selectors/expenses';
 const store = configureStore();
 
 store.dispatch(addExpense({description: 'Water bill', amount:10500}));
-const secondExpense = store.dispatch(addExpense({description: 'Gas bill', amount:6527}));
-
-setTimeout (() => {
-    store.dispatch(setTextFilter('bill'));
-}, 5000);
+const secondExpense = store.dispatch(addExpense({description: 'Gas bill', amount:6527, createdAt: 1000}));
+store.dispatch(addExpense({description: 'Rent', amount:159500}));
 
 console.log(getVisibleExpenses(store.getState().expenses, store.getState().filters));
 store.dispatch(editExpense(secondExpense.expense.id, {description: 'Gas'}));
@@ -29,3 +26,21 @@ const jsx = (
 );
 
 ReactDOM.render(jsx, document.getElementById('app'));
+
+// const demoState = {
+//     expenses: [
+//         {
+//             id: '0',
+//             description: 'January Rent',
+//             note: 'This is it',
+//             amount: 54599,
+//             createdAt: 0
+//         }
+//     ],
+//     filters: {
+//         text:'rent',
+//         sortBy: 'amount',  // date or amount
+//         startDate: undefined,
+//         endDate: undefined
+//     }
+// };
