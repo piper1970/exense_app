@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import 'react-dates/initialize';
 import {SingleDatePicker} from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 import  {removeExpense} from '../actions/expenses';
 import {connect} from 'react-redux';
 
@@ -12,7 +11,7 @@ export default class ExpenseForm extends React.Component{
         this.state = {
             id: props.expense?props.expense.id:undefined,
             description: props.expense? props.expense.description: '',
-            note: props.note? props.expense.note: '',
+            note: props.expense? props.expense.note: '',
             amount: props.expense? (props.expense.amount/100).toString(): '',
             createdAt: props.expense? moment(props.expense.createdAt): moment(),
             calendarFocused: false,
@@ -35,7 +34,7 @@ export default class ExpenseForm extends React.Component{
 
     amountChange = (e) => {
         const amount = e.target.value;
-        const pattern = /^\d+(\.\d{0,2})?$/
+        const pattern = /^\d+(\.\d{0,2})?$/;
         if(!amount || amount.match(pattern)){
             this.setState(() => ({amount}));
         }

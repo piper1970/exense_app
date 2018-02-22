@@ -2,13 +2,12 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import moment from 'moment'
 
-const ExpenseListItem = (props) => {
+export const ExpenseListItem = (props) => {
     const {id, description, amount, note, createdAt, index} = props;
 
-    console.log(`${description}, ${amount}, ${note}, ${createdAt}, ${index}`);
     return(
         <div>
-            {isTextPrintable(description) &&
+            {isTextPrintable(description) && isValidId(id) && 
                 <Link to={`/edit/${id}`}><h3>{description}</h3></Link>}
             {isAmountPrintable(amount) && <p>Amount: ${(amount/100).toFixed(2)}</p>}
             {isTextPrintable(note) && <p>Notes: {note}</p>}
@@ -27,15 +26,17 @@ const isTextPrintable = (text) =>{
 };
 
 const isDatePrintable = (date) => {
-    return !!date &&
-        typeof date === 'number' &&
-        date !== 0;
+    return typeof date === 'number';
 };
 
 const isAmountPrintable = (amount) => {
     return !!amount &&
         typeof amount === 'number' &&
         amount !== 0;
+}
+
+const isValidId = (id) => {
+    return !!id;
 }
 
 export default ExpenseListItem;
