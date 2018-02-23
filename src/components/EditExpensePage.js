@@ -3,32 +3,47 @@ import ExpenseForm from './ExpenseForm';
 import {connect} from 'react-redux';
 import { editExpense, removeExpense } from '../actions/expenses';
 
-const EditExpensePage = (props) => {
-    return( 
-        <div>
-            <h1>Edit Expense</h1>
-            <ExpenseForm
-                expense = {props.expense}
-                onSubmit={(expense) => {
-                    props.dispatch(editExpense(props.expense.id, expense));
-                    props.history.push('/');
-                }}
-            />
+export class EditExpensePage extends React.Component{
+
+    onSubmit = (expense) => {
+        this.props.editExpense(this.props.expense.id, expense);
+        this.props.history.push('/');
+    };
+
+    onClick = () => {
+        this.props.removeExpense({id:this.props.expense.id});
+        this.props.history.push('/');
+    };
+
+    render = () => {
+        return( 
             <div>
-                <button onClick={ () => {
-                    props.dispatch(removeExpense({id:props.expense.id}));
-                    props.history.push('/');
-                    }
-                }>Remove</button>
+                <h1>Edit Expense</h1>
+                <ExpenseForm
+                    expense = {this.props.expense}
+                    onSubmit={this.onSubmit}
+                />
+                <div>
+                    <button onClick={this.onClick}>
+                        Remove
+                    </button>
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
 
 const mapStateToForm = (state, props) => {
     const expense = state.expenses.find((expense) => expense.id === props.match.params.id);
     return {
         expense
     }
-}
-export default connect(mapStateToForm)(EditExpensePage);
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+        removeExpense: (obj) => dispatch(removeExpense(obj))
+    };
+};
+
+export default connect(mapStateToForm, mapDispatchToProps)(EditExpensePage);

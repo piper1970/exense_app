@@ -4,15 +4,28 @@ import {setTextFilter,sortByAmount,sortByDate, setStartDate, setEndDate} from '.
 import 'react-dates/initialize';
 import {DateRangePicker} from 'react-dates';
 
-class ExpenseListFilters extends React.Component{
+export class ExpenseListFilters extends React.Component{
     
     state = {
         calendarFocused: null
     };
 
+    textFilterOnChange = (e) => {
+        this.props.setTextFilter(e.target.value)
+    };
+
+    dateSelectOnChange = (e) => {
+        const value = e.target.value;
+        if(value === 'date'){
+            this.props.sortByDate();
+        }else{
+            this.props.sortByAmount();
+        }
+    };
+
     onDatesChange = ({startDate, endDate}) => {
-        this.props.dispatch(setStartDate(startDate));
-        this.props.dispatch(setEndDate(endDate));
+        this.props.setStartDate(startDate);
+        this.props.setEndDate(endDate);
     };
 
     onFocusChange = ((calendarFocused) => {
@@ -27,23 +40,18 @@ class ExpenseListFilters extends React.Component{
                         value={this.props.filters.text} 
                         name="filterTextBox" 
                         placeholder="Add text filter here..."
-                        onChange={(e) => {
-                            this.props.dispatch(setTextFilter(e.target.value));
-                        }} />
+                        onChange={this.textFilterOnChange}
+                    />
                     <select
                         value={this.props.filters.sortBy}
-                        onChange={(e) =>{
-                            if(e.target.value === 'date'){
-                                this.props.dispatch(sortByDate());
-                            }else if(e.target.value === 'amount'){
-                                this.props.dispatch(sortByAmount());
-                            }
-                        }}
+                        onChange={this.dateSelectOnChange}
                     >
                         <option value="date">Date</option>
                         <option value="amount">Amount</option>
                     </select>
                         <DateRangePicker 
+                            startDateId={'startDate'}
+                            endDateId={'endDate'}
                             startDate={this.props.filters.startDate}
                             endDate={this.props.filters.endDate}
                             onDatesChange={this.onDatesChange}
@@ -67,4 +75,15 @@ const connectMap = (state) => {
     }
 };
 
-export default connect(connectMap)(ExpenseListFilters);
+const connectDispatchToProp = (dispatch, prop) => {
+
+    return {
+        sortByDate: () => dispatch(sortByDate()),
+        sortByAmount: () => dispatch(sortByAmount()),
+        setTextFilter: (value) => dispatch(setTextFilter(value)),
+        setStartDate: (startDate) => dispatch(setStartDate(startDate)),
+        setEndDate: (endDate) => dispatch(setEndDate(endDate))
+    };
+};
+
+export default connect(connectMap, connectDispatchToProp)(ExpenseListFilters);
