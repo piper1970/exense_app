@@ -6,7 +6,8 @@
   "author": "Steve Sargent",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack ",
+    "build:dev": "webpack --env development",
+    "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "jest --config=jest.config.json"
   },
@@ -26,7 +27,7 @@
     "normalize-css": "^2.3.1",
     "react": "^16.2.0",
     "react-addons-shallow-compare": "^15.6.2",
-    "react-dates": "^16.3.0",
+    "react-dates": "16.3.0",
     "react-dom": "^16.2.0",
     "react-modal": "^3.2.1",
     "react-redux": "^5.0.7",
