@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
+import numeral from 'numeral';
 
 export const ExpenseListItem = (props) => {
     const {id, description, amount, note, createdAt, index} = props;
@@ -9,10 +10,10 @@ export const ExpenseListItem = (props) => {
         <div>
             {isTextPrintable(description) && isValidId(id) && 
                 <Link to={`/edit/${id}`}><h3>{description}</h3></Link>}
-            {isAmountPrintable(amount) && <p>Amount: ${(amount/100).toFixed(2)}</p>}
+            {isAmountPrintable(amount) && <p>Amount: {numeral(amount/100).format('$0,0.00')}</p>}
             {isTextPrintable(note) && <p>Notes: {note}</p>}
             {isDatePrintable(createdAt) && 
-                <p>Created at: {moment(createdAt).format('dddd, MMMM Do, YYYY')}</p>}
+                <p>Created at: {moment(createdAt).format('MMMM Do, YYYY')}</p>}
         </div>
             
         );
