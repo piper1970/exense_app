@@ -6,16 +6,9 @@
   "author": "Steve Sargent",
   "scripts": {
     "serve": "live-server public/",
-<<<<<<< HEAD
     "build:dev": "webpack --env development",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
-
-=======
-    "build:dev": "webpack --config webpack.dev.js",
-    "build:prod": "webpack --config webpack.prod.js",
-    "dev-server": "webpack-dev-server --config webpack.dev.js",
->>>>>>> a20552cea0d5f435ed6b69f3941cee8f34b29aaf
     "test": "jest --config=jest.config.json"
   },
   "dependencies": {
