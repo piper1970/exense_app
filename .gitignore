@@ -3,4 +3,5 @@ package-lock.json
 .DS_Store
 src/**/__snapshots__/
 public/bundle.js*
+public/styles.css*
 
