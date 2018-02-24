@@ -6,6 +6,7 @@
   "author": "Steve Sargent",
   "scripts": {
     "serve": "live-server public/",
+    "run-server": "node server/server.js",
     "build:dev": "webpack --env development",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
@@ -20,6 +21,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
+    "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "jshint": "^2.9.5",
     "live-server": "^1.2.0",
