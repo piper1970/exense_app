@@ -6,7 +6,7 @@
   "author": "Steve Sargent",
   "scripts": {
     "serve": "live-server public/",
-    "run-server": "node server/server.js",
+    "start": "node server/server.js",
     "build:dev": "webpack --env development",
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
