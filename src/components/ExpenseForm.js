@@ -12,7 +12,7 @@ export default class ExpenseForm extends React.Component{
             id: props.expense?props.expense.id:undefined,
             description: props.expense? props.expense.description: '',
             note: props.expense? props.expense.note: '',
-            amount: props.expense? (props.expense.amount).toString(): '',
+            amount: props.expense? (props.expense.amount/100).toString(): '',
             createdAt: props.expense? moment(props.expense.createdAt): moment(),
             calendarFocused: false,
             error:''
@@ -59,7 +59,7 @@ export default class ExpenseForm extends React.Component{
             this.setState(() => ({error}));
             this.props.onSubmit({
                 description:this.state.description,
-                amount: parseFloat(this.state.amount, 10),
+                amount: parseFloat(this.state.amount, 10) * 100,
                 createdAt:this.state.createdAt.valueOf(),
                 note: this.state.note
             });
@@ -81,11 +81,11 @@ export default class ExpenseForm extends React.Component{
                             autoFocus />
                     </div>
                     <div>
-                        <label htmlFor="amount">Amount(cents): </label>
+                        <label htmlFor="amount">Amount: </label>
                         <input 
                             name="amount" 
                             type="text" 
-                            placeholder="Amount (in cents)"
+                            placeholder="Amount"
                             value={this.state.amount}
                             onChange={this.amountChange}
                         />

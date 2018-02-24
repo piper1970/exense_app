@@ -24,12 +24,12 @@ exports[`ExpenseForm should render directly with no props 1`] = `
       <label
         htmlFor="amount"
       >
-        Amount(cents): 
+        Amount: 
       </label>
       <input
         name="amount"
         onChange={[Function]}
-        placeholder="Amount (in cents)"
+        placeholder="Amount"
         type="text"
         value=""
       />
@@ -172,12 +172,12 @@ exports[`ExpenseForm should render error for invalid form submission 1`] = `
       <label
         htmlFor="amount"
       >
-        Amount(cents): 
+        Amount: 
       </label>
       <input
         name="amount"
         onChange={[Function]}
-        placeholder="Amount (in cents)"
+        placeholder="Amount"
         type="text"
         value=""
       />
@@ -323,12 +323,12 @@ exports[`ExpenseForm should render error for invalid form submission 2`] = `
       <label
         htmlFor="amount"
       >
-        Amount(cents): 
+        Amount: 
       </label>
       <input
         name="amount"
         onChange={[Function]}
-        placeholder="Amount (in cents)"
+        placeholder="Amount"
         type="text"
         value=""
       />
@@ -471,12 +471,12 @@ exports[`ExpenseForm should render expense form with props given 1`] = `
       <label
         htmlFor="amount"
       >
-        Amount(cents): 
+        Amount: 
       </label>
       <input
         name="amount"
         onChange={[Function]}
-        placeholder="Amount (in cents)"
+        placeholder="Amount"
         type="text"
         value="1.95"
       />
