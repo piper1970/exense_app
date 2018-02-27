@@ -45,6 +45,8 @@ export const startRemoveExpense = ({id} = {}) => {
         return database.ref(`expenses/${id}`).remove()
         .then(() => {
             dispatch(removeExpense({id}))
+        }).catch((error) => {
+            console.log(`Errors occurred removing expense ${id} from database: ${error}`);
         });
     };
 }; 
@@ -70,8 +72,7 @@ export const startSetExpenses = () => {
             });
             dispatch(setExpenses(expenses));
         }).catch((error) => {
-            console.log(`Errors occurred accessing database: ${error}`);
-            dispatch(setExpenses(expenses));
+            console.log(`Errors occurred setting expenses from database: ${error}`);
         });
     };
 };
@@ -84,3 +85,14 @@ export const editExpense = (id, updates) => (
         updates
     }
 );
+
+export const startEditExpense = (id, updates) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).update(updates)
+        .then(() => {
+            dispatch(editExpense(id, updates));
+        }).catch((error) => {
+            console.log(`Errors occurred updating expense ${id} on database: ${error}`);
+        });
+    }
+}
