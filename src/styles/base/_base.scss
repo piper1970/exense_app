@@ -1,12 +1,17 @@
 // rem - instead of pixels 1 rem = 16 px
+
+* {
+    box-sizing: border-box;
+}
 html {
     font-size: 62.5%;
 }
 
 body {
-    background: whitee;
+    color: $dark-grey;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: $m_size;
+    font-size: $m-size;
+    line-height: 1.6;
 }
 
 button {

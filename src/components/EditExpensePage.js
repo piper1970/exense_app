@@ -1,9 +1,9 @@
 import React from 'react';
 import ExpenseForm from './ExpenseForm';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 
-export class EditExpensePage extends React.Component{
+export class EditExpensePage extends React.Component {
 
     onSubmit = (expense) => {
         this.props.startEditExpense(this.props.expense.id, expense);
@@ -11,21 +11,25 @@ export class EditExpensePage extends React.Component{
     };
 
     onClick = () => {
-        this.props.startRemoveExpense({id:this.props.expense.id});
+        this.props.startRemoveExpense({ id: this.props.expense.id });
         this.props.history.push('/');
     };
 
     render = () => {
-        return( 
+        return (
             <div>
-                <h1>Edit Expense</h1>
-                <ExpenseForm
-                    expense = {this.props.expense}
-                    onSubmit={this.onSubmit}
-                />
-                <div>
-                    <button onClick={this.onClick}>
-                        Remove
+                <div className="page-header">
+                    <div className="content-container">
+                        <h1 className="page-header__title">Edit Expense</h1>
+                    </div>
+                </div>
+                <div className="content-container">
+                    <ExpenseForm
+                        expense={this.props.expense}
+                        onSubmit={this.onSubmit}
+                    />
+                    <button className="button button--secondary" onClick={this.onClick}>
+                        Remove Expense
                     </button>
                 </div>
             </div>
